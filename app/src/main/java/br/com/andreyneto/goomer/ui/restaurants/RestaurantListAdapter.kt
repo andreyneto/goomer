@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import br.com.andreyneto.goomer.R
-import br.com.andreyneto.goomer.databinding.ItemProductBinding
+import br.com.andreyneto.goomer.databinding.ItemRestaurantBinding
 import br.com.andreyneto.goomer.model.Restaurantes
 
 class RestaurantListAdapter : RecyclerView.Adapter<RestaurantListAdapter.ViewHolder>() {
@@ -14,7 +14,7 @@ class RestaurantListAdapter : RecyclerView.Adapter<RestaurantListAdapter.ViewHol
     private lateinit var listener: (product: Restaurantes) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding: ItemProductBinding = DataBindingUtil
+        val binding: ItemRestaurantBinding = DataBindingUtil
             .inflate(LayoutInflater.from(parent.context), R.layout.item_restaurant, parent, false)
         return ViewHolder(binding)
     }
@@ -34,8 +34,8 @@ class RestaurantListAdapter : RecyclerView.Adapter<RestaurantListAdapter.ViewHol
         this.listener = function
     }
 
-    class ViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
-        private val viewModel = ProductViewModel()
+    class ViewHolder(private val binding: ItemRestaurantBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val viewModel = RestaurantViewModel()
 
         fun bind(restaurant: Restaurantes, listener: (restaurant: Restaurantes) -> Unit) {
             viewModel.bind(restaurant) {

@@ -1,12 +1,14 @@
 package br.com.andreyneto.goomer.utils
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 @BindingAdapter("mutableVisibility")
 fun View.setMutableVisibility(mutableVisibility: MutableLiveData<Int>?) {
@@ -21,6 +23,16 @@ fun TextView.setMutableText(mutableText: MutableLiveData<String>?) {
     val parentActivity: AppCompatActivity? = getParentActivity()
     if (parentActivity != null && mutableText != null) {
         mutableText.observe(parentActivity, Observer { value -> text = value ?: "" })
+    }
+}
+
+@BindingAdapter("imageUrl")
+fun ImageView.setImageUrl(mutableText: MutableLiveData<String>?) {
+    val parentActivity: AppCompatActivity? = getParentActivity()
+    if (parentActivity != null && mutableText != null) {
+        mutableText.observe(parentActivity, Observer { value ->
+            Glide.with(context).load(value).into(this)
+        })
     }
 }
 

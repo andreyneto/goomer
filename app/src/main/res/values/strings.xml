@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Canteen</string>
+    <string name="app_name">Goomer</string>
 
     <string name="retry">Tentar novamente</string>
     <string name="products_error">Ocorreu um erro no carregamento dos produtos</string>

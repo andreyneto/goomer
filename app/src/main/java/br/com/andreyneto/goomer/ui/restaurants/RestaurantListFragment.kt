@@ -12,24 +12,20 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.andreyneto.goomer.R
-import br.com.andreyneto.goomer.databinding.FragmentProductListBinding
+import br.com.andreyneto.goomer.databinding.FragmentRestaurantListBinding
 import br.com.andreyneto.goomer.injection.ViewModelFactory
-import br.com.andreyneto.goomer.model.CartItem
-import br.com.andreyneto.goomer.model.Product
 import com.google.android.material.snackbar.Snackbar
-import org.jetbrains.anko.design.snackbar
-import org.jetbrains.anko.support.v4.selector
 
-class ProductListFragment : Fragment() {
+class RestaurantListFragment : Fragment() {
 
-    private lateinit var binding: FragmentProductListBinding
+    private lateinit var binding: FragmentRestaurantListBinding
     private lateinit var viewModel: AppViewModel
     private var errorSnackbar: Snackbar? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_list, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_restaurant_list, container, false)
 
-        binding.productList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+        binding.restaurantList.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
         viewModel = ViewModelProviders.of(activity!!, ViewModelFactory(activity)).get(AppViewModel::class.java)
         viewModel.errorMessage.observe(this, Observer {
@@ -40,31 +36,10 @@ class ProductListFragment : Fragment() {
                 hideError()
             }
         })
-        viewModel.cart.observe(this, Observer {
-            binding.root.snackbar("${it.last().name} adicionado ao pedido")
-        })
         viewModel.restaurantListAdapter.setOnClickListener {
-            if(it.items.size > 1) {
-                selector(it.name, it.items) { dialogInterface, i ->
-                    addToCart(it, i)
-                }
-                return@setOnClickListener
-            }
-            addToCart(it, 0)
         }
         binding.viewModel = viewModel
         return binding.root
-    }
-
-    private fun addToCart(product: Product, item: Int) {
-        with(binding) {
-            val cartItem = CartItem("${product.name} - ${product.items[item]}", product.price)
-            viewModel?.let {
-                val list = (it.cart.value ?: emptyList<CartItem>()).toMutableList()
-                list.add(cartItem)
-                it.cart.postValue(list)
-            }
-        }
     }
 
     private fun showError(@StringRes errorMessage: Int) {
