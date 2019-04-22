@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class Restaurantes(
     val address: String,
-    val hours: List<Hour>,
+    val hours: List<Hour>?,
     @PrimaryKey
     val id: Int,
     val image: String,

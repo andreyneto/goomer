@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import br.com.andreyneto.goomer.injection.component.DaggerViewModelInjector
 import br.com.andreyneto.goomer.injection.component.ViewModelInjector
 import br.com.andreyneto.goomer.injection.module.NetworkModule
-import br.com.andreyneto.goomer.ui.restaurants.AppViewModel
+import br.com.andreyneto.goomer.ui.AppViewModel
 
 abstract class BaseViewModel : ViewModel() {
     private val injector: ViewModelInjector =

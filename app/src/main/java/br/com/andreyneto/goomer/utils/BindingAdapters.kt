@@ -8,14 +8,12 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import br.com.andreyneto.goomer.R
 import com.bumptech.glide.Glide
 
 @BindingAdapter("mutableVisibility")
-fun View.setMutableVisibility(mutableVisibility: MutableLiveData<Int>?) {
-    val parentActivity: AppCompatActivity? = getParentActivity()
-    if (parentActivity != null && mutableVisibility != null) {
-        mutableVisibility.observe(parentActivity, Observer { value -> visibility = value ?: View.VISIBLE })
-    }
+fun View.setMutableVisibility(visibility: Int?) {
+    this.visibility = visibility ?: View.VISIBLE
 }
 
 @BindingAdapter("mutableText")
@@ -26,12 +24,20 @@ fun TextView.setMutableText(mutableText: MutableLiveData<String>?) {
     }
 }
 
+@BindingAdapter("price")
+fun TextView.setPrice(mutableText: MutableLiveData<Double>?) {
+    val parentActivity: AppCompatActivity? = getParentActivity()
+    if (parentActivity != null && mutableText != null) {
+        mutableText.observe(parentActivity, Observer { value -> text = String.format("R$%.2f", value) })
+    }
+}
+
 @BindingAdapter("imageUrl")
 fun ImageView.setImageUrl(mutableText: MutableLiveData<String>?) {
     val parentActivity: AppCompatActivity? = getParentActivity()
     if (parentActivity != null && mutableText != null) {
         mutableText.observe(parentActivity, Observer { value ->
-            Glide.with(context).load(value).into(this)
+            Glide.with(context).load(value?:this.context.getDrawable(R.drawable.ic_launcher_foreground)).into(this)
         })
     }
 }

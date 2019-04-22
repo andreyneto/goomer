@@ -11,7 +11,7 @@ import br.com.andreyneto.goomer.model.Restaurantes
 class RestaurantListAdapter : RecyclerView.Adapter<RestaurantListAdapter.ViewHolder>() {
 
     private lateinit var restaurantList: List<Restaurantes>
-    private lateinit var listener: (product: Restaurantes) -> Unit
+    private lateinit var listener: (restaurantes: Restaurantes) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemRestaurantBinding = DataBindingUtil
@@ -25,7 +25,7 @@ class RestaurantListAdapter : RecyclerView.Adapter<RestaurantListAdapter.ViewHol
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(restaurantList[position], listener)
 
-    fun updateProductList(restaurantList: List<Restaurantes>) {
+    fun updateRestaurantList(restaurantList: List<Restaurantes>) {
         this.restaurantList = restaurantList
         notifyDataSetChanged()
     }

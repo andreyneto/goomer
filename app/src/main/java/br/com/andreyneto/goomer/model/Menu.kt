@@ -8,9 +8,9 @@ data class Menu(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val group: String,
-    val image: String,
+    val image: String?,
     val name: String,
-    val price: Int,
+    val price: Double,
     val restaurantId: Int,
-    val sales: List<Sale>
+    val sales: List<Sale>?
 )

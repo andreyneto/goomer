@@ -2,5 +2,6 @@
     <string name="app_name">Goomer</string>
 
     <string name="retry">Tentar novamente</string>
+    <string name="restaurants_error">Ocorreu um erro no carregamento dos restaurantes</string>
     <string name="products_error">Ocorreu um erro no carregamento dos produtos</string>
 </resources>

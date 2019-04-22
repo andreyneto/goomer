@@ -1,7 +1,7 @@
 package br.com.andreyneto.goomer.injection.component
 
 import br.com.andreyneto.goomer.injection.module.NetworkModule
-import br.com.andreyneto.goomer.ui.restaurants.AppViewModel
+import br.com.andreyneto.goomer.ui.AppViewModel
 import dagger.Component
 import javax.inject.Singleton
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import br.com.andreyneto.goomer.model.AppDatabase
-import br.com.andreyneto.goomer.ui.restaurants.AppViewModel
+import br.com.andreyneto.goomer.ui.AppViewModel
 
 class ViewModelFactory(private val activity: Context?) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
