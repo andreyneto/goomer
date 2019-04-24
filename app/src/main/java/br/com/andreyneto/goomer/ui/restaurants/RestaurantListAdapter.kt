@@ -1,5 +1,6 @@
 package br.com.andreyneto.goomer.ui.restaurants
 
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -28,6 +29,9 @@ class RestaurantListAdapter : RecyclerView.Adapter<RestaurantListAdapter.ViewHol
     fun updateRestaurantList(restaurantList: List<Restaurantes>) {
         this.restaurantList = restaurantList
         notifyDataSetChanged()
+        Handler().postDelayed({
+            notifyDataSetChanged()
+        }, 60000)
     }
 
     fun setOnClickListener(function: (restaurant: Restaurantes) -> Unit) {

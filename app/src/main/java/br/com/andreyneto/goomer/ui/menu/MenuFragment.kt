@@ -15,6 +15,7 @@ import br.com.andreyneto.goomer.base.BaseFragment
 import br.com.andreyneto.goomer.injection.ViewModelFactory
 import br.com.andreyneto.goomer.model.Restaurantes
 import br.com.andreyneto.goomer.ui.AppViewModel
+import br.com.andreyneto.goomer.utils.HoursUtil
 
 class MenuFragment : BaseFragment() {
 
@@ -54,7 +55,11 @@ class MenuFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.title = restaurant.name
+        (activity as AppCompatActivity).supportActionBar?.let {
+            it.title = restaurant.name
+            it.subtitle = HoursUtil.openStatus(restaurant)
+        }
         viewModel.loadMenu(restaurant.id)
     }
+
 }

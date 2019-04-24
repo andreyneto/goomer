@@ -21,6 +21,10 @@ open class BaseFragment : Fragment() {
         errorSnackbar?.show()
     }
 
+    fun View.snackbar(message: String) {
+        Snackbar.make(this, message, Snackbar.LENGTH_LONG).show()
+    }
+
     fun hideError() {
         errorSnackbar?.dismiss()
     }

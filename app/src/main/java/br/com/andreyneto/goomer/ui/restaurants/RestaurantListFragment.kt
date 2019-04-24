@@ -42,6 +42,7 @@ class RestaurantListFragment : BaseFragment() {
                 .addToBackStack(null)
                 .commit()
         }
+        (activity as AppCompatActivity).supportActionBar?.title = "Goomer"
         binding.viewModel = viewModel
         return binding.root
     }

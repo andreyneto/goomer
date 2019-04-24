@@ -5,9 +5,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import br.com.andreyneto.goomer.R
 import br.com.andreyneto.goomer.base.BaseViewModel
-import br.com.andreyneto.goomer.model.AppDao
-import br.com.andreyneto.goomer.model.Menu
-import br.com.andreyneto.goomer.model.Restaurantes
+import br.com.andreyneto.goomer.model.*
 import br.com.andreyneto.goomer.network.AppApi
 import br.com.andreyneto.goomer.ui.menu.MenuAdapter
 import br.com.andreyneto.goomer.ui.restaurants.RestaurantListAdapter
@@ -67,7 +65,6 @@ class AppViewModel(private val appDao: AppDao) : BaseViewModel() {
                 { error -> onRetrieveRestaurantListError(error) }
             )
     }
-
     fun loadMenu(restaurantId: Int) {
         lastRestaurant = restaurantId
         subscription = Observable.fromCallable { appDao.allMenuItens(restaurantId)}
